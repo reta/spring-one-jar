@@ -7,14 +7,15 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 
+import com.example.rs.JaxRsApiApplication;
+import com.example.rs.PeopleRestService;
 import com.example.services.PeopleService;
 
 @Configuration
-@ImportResource( "classpath:/META-INF/cxf/cxf.xml" )
 public class AppConfig {	
 	@Bean( destroyMethod = "shutdown" )
 	public SpringBus cxf() {
@@ -22,20 +23,31 @@ public class AppConfig {
 	}
 	
 	@Bean
-	public Server jaxRsServerFactory() {
-		JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint( jaxRsConfig(), JAXRSServerFactoryBean.class );
-		factory.setServiceBeans( Arrays.< Object >asList( peopleService() ) );
+	public Server jaxRsServer() {
+		JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint( jaxRsApiApplication(), JAXRSServerFactoryBean.class );
+		factory.setServiceBeans( Arrays.< Object >asList( peopleRestService() ) );
 		factory.setAddress( "/" + factory.getAddress() );
+		factory.setProviders( Arrays.< Object >asList( jsonProvider() ) );
 		return factory.create();
 	}
 	
 	@Bean 
-	public JaxRsConfig jaxRsConfig() {
-		return new JaxRsConfig();
+	public JaxRsApiApplication jaxRsApiApplication() {
+		return new JaxRsApiApplication();
+	}
+	
+	@Bean 
+	public PeopleRestService peopleRestService() {
+		return new PeopleRestService();
 	}
 	
 	@Bean 
 	public PeopleService peopleService() {
 		return new PeopleService();
+	}
+		
+	@Bean
+	public JacksonJsonProvider jsonProvider() {
+		return new JacksonJsonProvider();
 	}
 }

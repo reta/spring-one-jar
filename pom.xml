@@ -17,11 +17,29 @@
 		<org.eclipse.jetty.version>8.1.8.v20121106</org.eclipse.jetty.version>
 	</properties>
 
-	<dependencies>
+	<dependencies>			
 	    <dependency>
       		<groupId>org.apache.cxf</groupId>
       		<artifactId>cxf-rt-frontend-jaxrs</artifactId>
       		<version>${org.apache.cxf.version}</version>
+   		</dependency>
+
+	    <dependency>
+      		<groupId>javax.inject</groupId>
+      		<artifactId>javax.inject</artifactId>
+      		<version>1</version>
+   		</dependency>
+
+   		<dependency>
+      		<groupId>org.codehaus.jackson</groupId>
+      		<artifactId>jackson-jaxrs</artifactId>
+      		<version>1.9.11</version>
+   		</dependency>
+   		
+   		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+   			<artifactId>jackson-mapper-asl</artifactId>
+   			<version>1.9.11</version>
    		</dependency>
    		
 		<dependency>
@@ -47,28 +65,10 @@
 			<artifactId>spring-web</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency>
 						
 		<dependency>
 		    <groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>${org.eclipse.jetty.version}</version>		   		   
-		</dependency>
-
-		<dependency>
-		    <groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-			<version>${org.eclipse.jetty.version}</version>		   		   
-		</dependency>
-			
-		<dependency>
-		    <groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-annotations</artifactId>
 			<version>${org.eclipse.jetty.version}</version>		   		   
 		</dependency>
 					
@@ -81,6 +81,15 @@
 
 	<build>
 		<plugins>
+ 			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
