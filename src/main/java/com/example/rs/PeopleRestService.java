@@ -3,8 +3,8 @@ package com.example.rs;
 import java.util.Collection;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -24,10 +24,9 @@ public class PeopleRestService {
 		return peopleService.getPeople( page, 5 );
 	}
 		
-	@Consumes( { "application/json" } )
 	@Produces( { "application/json" } )
 	@PUT
-	public Person addPerson( @QueryParam( "email" ) final String email ) {
-		return new Person( email );
+	public Person addPerson( @FormParam( "email" ) final String email ) {
+		return peopleService.addPerson( email );
 	}
 }

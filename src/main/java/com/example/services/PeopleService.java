@@ -18,4 +18,8 @@ public class PeopleService {
 		
 		return persons;
 	}
+
+	public Person addPerson( String email ) {
+		return new Person( email );
+	}
 }
