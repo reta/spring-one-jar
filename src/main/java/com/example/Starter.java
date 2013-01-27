@@ -21,5 +21,7 @@ public class Starter {
 		// tomcat.addWebapp("/", webRoot);
 		tomcat.start();
 		tomcat.getServer().await();
-	}
+
+	}	
 }
+
