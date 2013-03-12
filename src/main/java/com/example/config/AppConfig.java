@@ -7,13 +7,13 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.example.rs.JaxRsApiApplication;
 import com.example.rs.PeopleRestService;
 import com.example.services.PeopleService;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @Configuration
 public class AppConfig {	
