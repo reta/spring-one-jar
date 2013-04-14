@@ -9,6 +9,7 @@ import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import com.example.rs.JaxRsApiApplication;
 import com.example.rs.PeopleRestService;
@@ -22,7 +23,7 @@ public class AppConfig {
 		return new SpringBus();
 	}
 	
-	@Bean
+	@Bean @DependsOn( "cxf" )
 	public Server jaxRsServer() {
 		JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint( jaxRsApiApplication(), JAXRSServerFactoryBean.class );
 		factory.setServiceBeans( Arrays.< Object >asList( peopleRestService() ) );
